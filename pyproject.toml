@@ -1,0 +1,24 @@
+[project]
+name = "OpenCabinetServer"
+version = "0.1.0"
+description = "An easy to deploy home server"
+authors = [
+    {name = "MacchiatoSoft"}
+]
+readme = "README.md"
+requires-python = ">=3.13,<4.0"
+dependencies = [
+    "poetry (>=2.1.2,<3.0.0)",
+    "flask (>=3.1.0,<4.0.0)",
+    "flask-cors (>=5.0.1,<6.0.0)",
+    "flask-bcrypt (>=1.0.1,<2.0.0)",
+    "flask-sqlalchemy (>=3.1.1,<4.0.0)",
+    "psycopg2 (>=2.9.10,<3.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)",
+    "pytest (>=8.3.5,<9.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
