@@ -17,9 +17,12 @@ class db_cabinet:
         self.init_conn()
 
     def create_session_db(self):
-        self.conn.autocommit=True
-        self.cur.execute("CREATE DATABASE cabinet_session")
-        self.conn.autocommit=False
+        try:
+            self.conn.autocommit=True
+            self.cur.execute("CREATE DATABASE cabinet_session")
+        except psycopg2.errors.DuplicateDatabase as e:
+            print("Database already Exists")
+            self.conn.autocommit=False
 
     def get_conn(self):
         print("Connecting")

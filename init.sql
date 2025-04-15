@@ -8,10 +8,9 @@ CREATE TABLE main.users (
     password TEXT
 );
 
-
 create table main.files(
     file_id UUID PRIMARY KEY UNIQUE DEFAULT gen_random_uuid(),
-    owner_id INTEGER NOT NULL,
+    owner_id UUID NOT NULL,
     file_name TEXT NOT NULL,
     file_type TEXT,
     file_dir TEXT,
@@ -20,14 +19,19 @@ create table main.files(
 
 create table main.drawers(
     drawer_id UUID PRIMARY KEY UNIQUE DEFAULT gen_random_uuid(),
-    owner_id INTEGER NOT NULL,
+    owner_id UUID NOT NULL,
     drawer_name TEXT NOT NULL,
     drawer_type TEXT NOT NULL,
     drawer_files INTEGER[] NOT NULL
 );
 
+create table main.test(
+    owner_name TEXT,
+    data TEXT
+)
+
 -- For test purposes only
 INSERT INTO main.users ("user_name", "password") VALUES ('guest', 'guest');
 INSERT INTO main.users ("user_name", "password") VALUES ('admin', 'admin');
-
+INSERT INTO main.test("admin", "testdata")
 
