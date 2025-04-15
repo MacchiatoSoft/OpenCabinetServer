@@ -1,3 +1,4 @@
+--MAIN SCHEMA
 create schema main;
 CREATE EXTENSION "pgcrypto";
 
@@ -28,3 +29,5 @@ create table main.drawers(
 -- For test purposes only
 INSERT INTO main.users ("user_name", "password") VALUES ('guest', 'guest');
 INSERT INTO main.users ("user_name", "password") VALUES ('admin', 'admin');
+
+

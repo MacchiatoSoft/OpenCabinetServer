@@ -7,7 +7,7 @@ import time
 import psycopg2
 
 
-class DB_Cabinet:
+class db_cabinet:
 
     is_connected : bool = False
     conn : psycopg2.extensions.connection
@@ -16,24 +16,31 @@ class DB_Cabinet:
     def __init__(self):
         self.init_conn()
 
+    def create_session_db(self):
+        self.conn.autocommit=True
+        self.cur.execute("CREATE DATABASE cabinet_session")
+        self.conn.autocommit=False
 
     def get_conn(self):
+        print("Connecting")
         return psycopg2.connect(
-            database="opencabinet",
-            user="postgres",
-            password="postgres",
-            host="0.0.0.0"
+            database="cabinet",
+            user="admin",
+            password="admin",
+            host="localhost",
+            port=5432
         )
 
     def init_conn(self):
-        while True:
+        while not self.is_connected:
             try:
                 self.conn = self.get_conn()
                 self.cur = self.conn.cursor()
-                is_connected = True
+                self.is_connected = True
+                print("Connected")
             except Exception as e:
                 print("Error connecting to DB")
-                is_conencted = False
+                self.is_connected = False
                 time.sleep(5)
                 continue
 
@@ -42,7 +49,7 @@ class DB_Cabinet:
         if self.is_connected:
             self.cur.close() 
             self.conn.close()
-            is_connected=False
+            self.is_connected=False
 
     def get_user_full(self, username:str, password:str) -> User | None:
             if self.is_connected:
