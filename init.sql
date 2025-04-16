@@ -22,16 +22,9 @@ create table main.drawers(
     owner_id UUID NOT NULL,
     drawer_name TEXT NOT NULL,
     drawer_type TEXT NOT NULL,
-    drawer_files INTEGER[] NOT NULL
+    drawer_files INTEGER[]
 );
-
-create table main.test(
-    owner_name TEXT,
-    data TEXT
-)
 
 -- For test purposes only
 INSERT INTO main.users ("user_name", "password") VALUES ('guest', 'guest');
 INSERT INTO main.users ("user_name", "password") VALUES ('admin', 'admin');
-INSERT INTO main.test("admin", "testdata")
-
